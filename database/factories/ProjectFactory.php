@@ -20,8 +20,9 @@ class ProjectFactory extends Factory
         return [
             'name' => $this->faker->randomElement($projects),
             'description' => $this->faker->text(),
-            'deadline' => $this->faker->date(),
-            'department_id' => $this->faker->numberBetween(1, 3)
+            'start_date' => $this->faker->dateTimeBetween('-12 days', '-10 days'), //todo ubah
+            'end_date' => $this->faker->dateTimeBetween('-5 days', '-4 days'), //todo ubah
+            'finish_date' => $this->faker->dateTimeBetween('-8 days', '-6 days'), //todo ubah
         ];
     }
 }
