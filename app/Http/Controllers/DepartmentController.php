@@ -12,7 +12,9 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        //
+        return view('department.index', [
+            'departments' => Department::withCount('employes')->orderBy('name')->get()
+        ]);
     }
 
     /**

@@ -18,7 +18,8 @@ class DepartmentFactory extends Factory
     {
         $departments = ['Developer', 'Designer', 'SEO'];
         return [
-            'name' => $this->faker->unique()->randomElement($departments)
+            'name' => $this->faker->unique()->randomElement($departments),
+            'kepala_department' => $this->faker->name
         ];
     }
 }
