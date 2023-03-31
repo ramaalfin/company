@@ -51,13 +51,17 @@
                     <div class="flex items-center mt-4 lg:mt-0">
                         @guest
                             <a class="my-2 text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0"
-                                href="">{{ __('Login') }}</a>
+                                href="{{ route('login') }}">{{ __('Login') }}</a>
+                            @if (Route::has('register'))
+                                <a href="{{ route('register') }}"
+                                    class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a>
+                            @endif
                         @else
                             <a class="my-2 text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0"
-                                href="">{{ Auth::user()->name }}</a>
+                                href="#">{{ Auth::user()->name }}</a>
                             <a class="my-2 text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0"
-                                href="">{{ __('Logout') }}</a>
-                            <form action="{{ route('logout') }}" method="post" class="none">
+                                href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="post" style="display: none;">
                                 @csrf
                             </form>
                         @endguest

@@ -12,7 +12,9 @@ class EmployeController extends Controller
      */
     public function index()
     {
-        //
+        return view('employe.index', [
+            'employes' => Employe::orderBy('fullname')->paginate(5)
+        ]);
     }
 
     /**
