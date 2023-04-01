@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Department;
+use App\Models\Project;
 use Illuminate\Http\Request;
 
 class DepartmentController extends Controller
@@ -17,6 +18,14 @@ class DepartmentController extends Controller
         ]);
     }
 
+
+    public function departmentProject(Department $department)
+    {
+        $project = Project::with('departments')->get();
+        return view('project.show', [
+            'project' => $project,
+        ]);
+    }
     /**
      * Show the form for creating a new resource.
      */

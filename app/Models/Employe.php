@@ -12,11 +12,11 @@ class Employe extends Model
 
     public function department()
     {
-        return $this->belongsTo(Department::class, 'department_id');
+        return $this->belongsTo('App\Models\Department');
     }
 
     public function projects()
     {
-        return $this->belongsToMany(Project::class, 'project_id');
+        return $this->belongsToMany('App\Models\Project')->withTimestamps();
     }
 }

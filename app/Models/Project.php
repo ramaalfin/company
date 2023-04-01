@@ -11,10 +11,10 @@ class Project extends Model
     protected $guarded = [];
     public function departments()
     {
-        return $this->belongsToMany(Department::class, 'department_id');
+        return $this->belongsToMany(Department::class)->withTimestamps();
     }
     public function employes()
     {
-        return $this->belongsToMany(Employe::class, 'employe_id');
+        return $this->belongsToMany('App\Models\Employe')->withTimestamps();
     }
 }
