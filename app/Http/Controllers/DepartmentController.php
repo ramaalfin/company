@@ -24,8 +24,8 @@ class DepartmentController extends Controller
     {
         $department = Department::findOrFail($id);
         return view('project.show', [
-            'department' => $department,
-            'projects' => $department->projects,
+            'department' => $department, //*mengambil data department dari database sesuai parameter $id
+            'projects' => $department->projects, //*mengambil semua data project yang terkait dengan department tersebut.
         ]);
     }
     /**

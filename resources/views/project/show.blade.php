@@ -11,6 +11,7 @@
                     <h2>Nama Project: {{ $project->name }}</h2>
                 </li>
                 <ul class="list-disc">
+                    {{-- Tampilkan 1 nama department jika terdapat data duplikat --}}
                     @foreach ($project->departments->unique('id') as $department)
                         <li>{{ $department->name }}</li>
                     @endforeach
