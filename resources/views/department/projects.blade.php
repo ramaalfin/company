@@ -8,7 +8,7 @@
         <ol class="list-decimal">
             @foreach ($projects as $project)
                 <li>
-                    <h2>Nama Project: {{ $project->name }}</h2>
+                    <h2>Nama Project: <a href="{{ route('projects.show', $project->id) }}">{{ $project->name }}</a></h2>
                 </li>
                 <ul class="list-disc">
                     {{-- Tampilkan 1 nama department jika terdapat data duplikat --}}

@@ -13,7 +13,7 @@
             <p>Department yang mengambil project : </p>
             <ol class="list-decimal ms-4">
                 @forelse ($project->departments->unique('id') as $department)
-                    <li>{{ $department->name }}</li>
+                    <li><a href="{{ route('department-project', ['id' => $department->id]) }}">{{ $department->name }}</a></li>
                 @empty
                     <li>-</li>
                 @endforelse

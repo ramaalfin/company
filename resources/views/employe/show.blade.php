@@ -15,7 +15,7 @@
             <p>Project yang dikerjakan : </p>
             <ol class="list-decimal ms-4">
                 @foreach ($employe->projects->unique('id') as $project)
-                    <li>{{ $project->name }}</li>
+                    <li><a href="{{ route('projects.show', ['project' => $project->id]) }}">{{ $project->name }}</a></li>
                 @endforeach
             </ol>
         </div>
