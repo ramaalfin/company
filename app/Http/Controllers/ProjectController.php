@@ -38,7 +38,10 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        //
+        return view('project.show', [
+            'project' => $project,
+            'departments' => $project->departments //*mengambil semua data department yang terkait dengan project tersebut.
+        ]);
     }
 
     /**

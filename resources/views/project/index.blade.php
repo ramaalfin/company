@@ -9,7 +9,6 @@
                 <tr>
                     <th>No.</th>
                     <th>Name</th>
-                    <th>Deskripsi</th>
                     <th>Start Date</th>
                     <th>Finish Date</th>
                     <th>End Date</th>
@@ -19,8 +18,7 @@
                 @foreach ($projects as $project)
                 <tr>
                     <td>{{ $projects->firstItem() + $loop->iteration -1 }}</td>
-                    <td>{{ $project->name }}</td>
-                    <td>{{ $project->description }}</td>
+                    <td><a href="{{ route('projects.show', ['project' => $project->id]) }}">{{ $project->name }}</a></td>
                     <td>{{ $project->start_date }}</td>
                     <td>{{ $project->finish_date }}</td>
                     <td>{{ $project->end_date }}</td>
