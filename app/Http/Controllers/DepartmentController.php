@@ -19,11 +19,11 @@ class DepartmentController extends Controller
     }
 
 
-    public function departmentProject(Department $department)
+    public function departmentProject()
     {
-        $project = Project::with('departments')->get();
+        $projects = Project::with('departments')->get();
         return view('project.show', [
-            'project' => $project,
+            'projects' => $projects,
         ]);
     }
     /**
