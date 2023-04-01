@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Department;
+use App\Models\Employe;
 use App\Models\Project;
 use Illuminate\Http\Request;
 
@@ -18,12 +19,21 @@ class DepartmentController extends Controller
         ]);
     }
 
+    // todo menampilkan semua employe yang terkait dengan department.
+    public function departmentEmploye($id)
+    {
+        $department = Department::findOrFail($id)->name;
+        return view('employe.index', [
+            'employes' => Employe::where('department_id', $id)->orderBy('fullname')->paginate(10),
+            'nama_department' => $department,
+        ]);
+    }
 
-    // todo menampilkan semua project yang terkait dengan suatu department.
+    // todo menampilkan semua project yang terkait dengan department.
     public function departmentProject($id)
     {
         $department = Department::findOrFail($id);
-        return view('project.show', [
+        return view('department.projects', [
             'department' => $department, //*mengambil data department dari database sesuai parameter $id
             'projects' => $department->projects, //*mengambil semua data project yang terkait dengan department tersebut.
         ]);

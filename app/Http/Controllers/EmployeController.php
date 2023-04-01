@@ -38,7 +38,9 @@ class EmployeController extends Controller
      */
     public function show(Employe $employe)
     {
-        //
+        return view('employe.show', [
+            'employe' => $employe
+        ]);
     }
 
     /**

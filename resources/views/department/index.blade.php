@@ -9,7 +9,7 @@
                         <h2 class="card-title">{{ $department->name }}</h2>
                         <p>{{ $department->kepala_department }}</p>
                         <div class="card-actions justify-center">
-                            <a class="btn btn-primary" href="#">Employees</a>
+                            <a class="btn btn-primary" href="{{ route('department-employe', ['id' => $department->id]) }}">Employees</a>
                             <a class="btn btn-warning" href="{{ route('department-project', ['id' => $department->id]) }}">Projects</a>
                         </div>
                     </div>

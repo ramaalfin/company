@@ -16,6 +16,7 @@ Route::resource('departments', DepartmentController::class);
 Route::resource('employes', EmployeController::class);
 Route::resource('projects', ProjectController::class);
 
+Route::get('/department-employe/{id}', [DepartmentController::class, 'departmentEmploye'])->name('department-employe');
 Route::get('/department-project/{id}', [DepartmentController::class, 'departmentProject'])->name('department-project');
 
 Auth::routes();

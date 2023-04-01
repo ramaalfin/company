@@ -18,7 +18,7 @@
                     @foreach ($employes as $employe)
                     <tr>
                         <td>{{ $employes->firstItem() + $loop->iteration -1 }}</td>
-                        <td>{{ $employe->nip }}</td>
+                        <td><a href="{{ route('employes.show', ['employe' => $employe->id]) }}">{{ $employe->nip }}</a></td>
                         <td>{{ $employe->fullname }}</td>
                         <td>{{ $employe->email }}</td>
                         <td>{{ $employe->department->name }}</td>
