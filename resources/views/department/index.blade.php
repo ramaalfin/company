@@ -10,7 +10,7 @@
                         <p>{{ $department->kepala_department }}</p>
                         <div class="card-actions justify-center">
                             <a class="btn btn-primary" href="#">Employees</a>
-                            <a class="btn btn-warning" href="{{ route('department-project', ['department_id' => $department->id]) }}">Projects</a>
+                            <a class="btn btn-warning" href="{{ route('department-project', ['id' => $department->id]) }}">Projects</a>
                         </div>
                     </div>
                 </div>

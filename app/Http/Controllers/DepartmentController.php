@@ -19,11 +19,13 @@ class DepartmentController extends Controller
     }
 
 
-    public function departmentProject(Department $department)
+    // todo menampilkan semua project yang terkait dengan suatu department.
+    public function departmentProject($id)
     {
-        $projects = Project::with('departments')->get();
+        $department = Department::findOrFail($id);
         return view('project.show', [
-            'projects' => $projects,
+            'department' => $department,
+            'projects' => $department->projects,
         ]);
     }
     /**
