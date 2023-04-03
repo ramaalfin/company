@@ -24,7 +24,6 @@
             <p>Karyawan yang mengerjakan project : </p>
             <ol class="list-decimal ms-4">
                 @forelse ($project->employes->unique('id') as $employe)
-                    {{-- <li><a href="{{ route('department-project', ['id' => $department->id]) }}">{{ $department->name }}</a></li> --}}
                     <li><a href="{{ route('employes.show', ['employe' => $employe->id]) }}">{{ $employe->fullname }}</a></li>
                 @empty
                     <li>-</li>

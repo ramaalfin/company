@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <section class="px-12">
-        <h1 class="text-2xl mb-5">Biodata Pegawai</h1>
+        <h1 class="text-2xl mb-5">Biodata Karyawan</h1>
         <ul>
             <li>NIP : {{ $employe->nip }}</li>
             <li>Nama : {{ $employe->fullname }}</li>
@@ -11,13 +11,18 @@
             <li>Phone Number : {{ $employe->phone_number }}</li>
             <li>Address : {{ $employe->address }}</li>
         </ul>
-        <div class="container mt-2">
+        <div class="mt-2">
             <p>Project yang dikerjakan : </p>
             <ol class="list-decimal ms-4">
-                @foreach ($employe->projects->unique('id') as $project)
+                @foreach ($projects->unique('id') as $project)
                     <li><a href="{{ route('projects.show', ['project' => $project->id]) }}">{{ $project->name }}</a></li>
                 @endforeach
             </ol>
+        </div>
+        <div class="mt-2">
+            @auth
+                <a href="{{ route('ambil-project', ['employe' => $employe->id]) }}" class="btn btn-info">Ambil Project</a>
+            @endauth
         </div>
         {{-- 1 --}}
 

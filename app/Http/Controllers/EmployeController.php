@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Department;
 use App\Models\Employe;
+use App\Models\Project;
 use Illuminate\Http\Request;
 
 class EmployeController extends Controller
@@ -46,13 +47,42 @@ class EmployeController extends Controller
         return redirect('/employes');
     }
 
+    public function ambilProject(Employe $employe)
+    {
+        $department = $employe->department;
+        $projects = $department->projects;
+        return view('employe.ambil-project', [
+            'employe' => $employe,
+            'department' => $department,
+            'projects' => $projects, //* ambil project yang sama dengan department si employe
+            'projects_sudah_diambil' => $employe->projects->pluck('id')->all()
+        ]);
+    }
+
+    public function prosesAmbilProject(Request $request, Employe $employe)
+    {
+        // Ambil semua daftar project dari department yang sama dengan employe
+        $department = $employe->department;
+        $projects = $department->projects;
+        $department_project = $projects->pluck('id')->toArray();
+
+        $validated = $request->validate([
+            'project.*' => 'distinct|in:'.implode(',', $department_project), // jika id mata kuliah yang dipilih ada di dalam syarat 'in', maka akan lolos validasi.
+        ]);
+
+        // INSERT KE DB
+        $employe->projects()->sync($validated['project'] ?? []);
+        return redirect(route('employes.show', ['employe' => $employe->id]));
+    }
+
     /**
      * Display the specified resource.
      */
     public function show(Employe $employe)
     {
         return view('employe.show', [
-            'employe' => $employe
+            'employe' => $employe,
+            'projects' => $employe->projects
         ]);
     }
 
