@@ -2,6 +2,13 @@
 @section('content')
     <section class="px-12 my-12">
         <h1 class="text-3xl text-center mb-10 font-bold">Sistem Informasi Rama Company</h1>
+
+        <div class="text-end pt-5 pb-4">
+            @auth
+                <a href="{{ route('departments.create') }}" class="btn btn-info text-white">Tambah Department</a>
+            @endauth
+        </div>
+
         <div class="grid grid-cols-1 md:grid-cols-3 gap-3 justify-center">
             @foreach ($departments as $department)
                 <div class="card w-96 bg-base-100 shadow-xl">

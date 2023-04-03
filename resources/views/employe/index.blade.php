@@ -2,6 +2,13 @@
 @section('content')
     <section class="px-12 my-12">
         <h1 class="text-3xl text-center mb-10 font-bold">Data Pegawai {{ $nama_department ?? 'Rama Company' }}</h1>
+
+        <div class="text-end pt-5 pb-4">
+            @auth
+                <a href="{{ route('employes.create') }}" class="btn btn-info text-white">Tambah Karyawan</a>
+            @endauth
+        </div>
+
         <div class="overflow-x-auto">
             <table class="table table-zebra w-full">
                 <!-- head -->

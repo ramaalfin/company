@@ -19,7 +19,39 @@
                 @endforelse
             </ol>
         </div>
+
+        <div class="container mt-2">
+            <p>Karyawan yang mengerjakan project : </p>
+            <ol class="list-decimal ms-4">
+                @forelse ($project->employes->unique('id') as $employe)
+                    {{-- <li><a href="{{ route('department-project', ['id' => $department->id]) }}">{{ $department->name }}</a></li> --}}
+                    <li><a href="{{ route('employes.show', ['employe' => $employe->id]) }}">{{ $employe->fullname }}</a></li>
+                @empty
+                    <li>-</li>
+                @endforelse
+            </ol>
+        </div>
+
+        {{-- <div class="container mt-2">
+            <label for="num_of_selects">Jumlah department : </label>
+            <input type="number" id="num_of_selects" name="num_of_selects">
+            <div id="selects_container"></div>
+        </div> --}}
         {{-- 1 --}}
 
     </section>
+    {{-- <script>
+        const numOfSelectsInput = document.getElementById('num_of_selects');
+        const selectsContainer = document.getElementById('selects_container');
+
+        numOfSelectsInput.addEventListener('change', (e) => {
+            const numOfSelects = e.target.value;
+            selectsContainer.innerHTML = '';
+            for (let i = 0; i < numOfSelects; i++) {
+                const select = document.createElement('select');
+                selectsContainer.appendChild(select)
+
+            }
+        })
+    </script> --}}
 @endsection

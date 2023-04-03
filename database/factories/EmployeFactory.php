@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Department;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -23,7 +24,7 @@ class EmployeFactory extends Factory
             'address' => $this->faker->address(),
             'email' => $this->faker->unique()->safeEmail(),
             'phone_number' => $this->faker->phoneNumber(),
-            'department_id' => $this->faker->numberBetween(1, 3)
+            'department_id' => $this->faker->numberBetween(1, Department::count())
         ];
     }
 }

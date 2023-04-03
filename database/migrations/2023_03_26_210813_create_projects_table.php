@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('description')->nullable();
-            $table->date('start_date'); //todo ubah
-            $table->date('end_date'); //todo ubah
-            $table->date('finish_date'); //todo ubah
+            $table->date('start_date')->nullable(); //todo ubah
+            $table->date('end_date')->nullable(); //todo ubah
+            $table->date('finish_date')->nullable(); //todo ubah
             $table->timestamps();
         });
     }

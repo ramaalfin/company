@@ -43,7 +43,7 @@ class DepartmentController extends Controller
      */
     public function create()
     {
-        //
+        return view('department.create');
     }
 
     /**
@@ -51,7 +51,12 @@ class DepartmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required',
+            'kepala_department' => 'required',
+        ]);
+        $department = Department::create($validated);
+        return redirect('/departments');
     }
 
     /**

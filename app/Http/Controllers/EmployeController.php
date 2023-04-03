@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Department;
 use App\Models\Employe;
 use Illuminate\Http\Request;
 
@@ -22,7 +23,9 @@ class EmployeController extends Controller
      */
     public function create()
     {
-        //
+        return view('employe.create', [
+            'departments' => Department::orderBy('name')->get()
+        ]);
     }
 
     /**
@@ -30,7 +33,17 @@ class EmployeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'nip' => 'required|size:8|alpha_num|unique:employes,nip',
+            'fullname' => 'required',
+            'email' => 'required|email|unique:employes,email',
+            'gender' => 'required|string|in:male,female',
+            'address' => 'required',
+            'phone_number' => 'required|max:20',
+            'department_id' => 'required|exists:departments,id'
+        ]);
+        Employe::create($validated);
+        return redirect('/employes');
     }
 
     /**

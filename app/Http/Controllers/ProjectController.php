@@ -22,7 +22,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        return view('project.create');
     }
 
     /**
@@ -30,7 +30,15 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required',
+            'description' => 'nullable|min:3',
+            'start_date' => "nullable|date",
+            'end_date' => 'nullable|date',
+            'finish_date' => 'nullable|date',
+        ]);
+        Project::create($validated);
+        return redirect('/projects');
     }
 
     /**
@@ -40,7 +48,8 @@ class ProjectController extends Controller
     {
         return view('project.show', [
             'project' => $project,
-            'departments' => $project->departments //*mengambil semua data department yang terkait dengan project tersebut.
+            'departments' => $project->departments, //*mengambil semua data department yang terkait dengan project tersebut.
+            'employes' => $project->employes, //*mengambil semua data employe yang terkait dengan project tersebut.
         ]);
     }
 
