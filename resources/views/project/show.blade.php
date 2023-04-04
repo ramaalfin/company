@@ -24,11 +24,22 @@
             <p>Karyawan yang mengerjakan project : </p>
             <ol class="list-decimal ms-4">
                 @forelse ($project->employes->unique('id') as $employe)
-                    <li><a href="{{ route('employes.show', ['employe' => $employe->id]) }}">{{ $employe->fullname }}</a></li>
+                    <li>
+                        <a href="{{ route('employes.show', ['employe' => $employe->id]) }}">
+                            {{ $employe->fullname }} ({{ $employe->department->name }})
+                        </a>
+                    </li>
                 @empty
                     <li>-</li>
                 @endforelse
             </ol>
+        </div>
+
+        <div class="flex mt-4">
+            @auth
+                <a href="{{ route('tambah-department', ['project' => $project->id]) }}" class="btn btn-info me-2">Tambah Department</a>
+                <a href="{{ route('tambah-employe', ['project' => $project->id]) }}" class="btn btn-warning">Tambah Karyawan</a>
+            @endauth
         </div>
 
         {{-- <div class="container mt-2">

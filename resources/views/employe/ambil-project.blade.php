@@ -8,7 +8,8 @@
             <li>Email : {{ $employe->email }}</li>
             <li>Department : {{ $employe->department->name }}</li>
         </ul>
-        <p class="my-5">Daftar Project di department {{ $department->name }}</p>
+        {{-- <p class="my-5">Daftar Project di department {{ $department->name }}</p> --}}
+        <p class="my-5">Daftar Project</p>
         <form action="{{ route('proses-ambil-project', $employe->id) }}" method="post">
             @csrf
             <div class="row">
@@ -27,7 +28,7 @@
                                 @endif>
 
                             <label class="form-check-label" for="project-{{ $project->id }}">
-                                {{ $project->name }}
+                                {{ $project->name }} ({{ implode(', ', $project->departments->pluck('name')->unique()->toArray()) }})
                             </label>
                         </div>
                     @endforeach

@@ -15,7 +15,11 @@
             <p>Project yang dikerjakan : </p>
             <ol class="list-decimal ms-4">
                 @foreach ($projects->unique('id') as $project)
-                    <li><a href="{{ route('projects.show', ['project' => $project->id]) }}">{{ $project->name }}</a></li>
+                    <li>
+                        <a href="{{ route('projects.show', ['project' => $project->id]) }}">
+                            {{ $project->name }} ({{ implode(', ', $project->departments->pluck('name')->unique()->toArray()) }})
+                        </a>
+                    </li>
                 @endforeach
             </ol>
         </div>

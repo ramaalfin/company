@@ -22,6 +22,12 @@ Route::get('/department-project/{id}', [DepartmentController::class, 'department
 Route::get('/employes/ambil-project/{employe}', [EmployeController::class, 'ambilProject'])->name('ambil-project');
 Route::post('/employes/ambil-project/{employe}', [EmployeController::class, 'prosesAmbilProject'])->name('proses-ambil-project');
 
+Route::get('/projects/tambah-department/{project}', [ProjectController::class, 'tambahDepartment'])->name('tambah-department');
+Route::post('/projects/tambah-department/{project}', [ProjectController::class, 'prosesTambahDepartment'])->name('proses-tambah-department');
+
+Route::get('/projects/tambah-employe/{project}', [ProjectController::class, 'tambahEmploye'])->name('tambah-employe');
+Route::post('/projects/tambah-employe/{project}', [ProjectController::class, 'prosesTambahEmploye'])->name('proses-tambah-employe');
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
