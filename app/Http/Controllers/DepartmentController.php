@@ -64,7 +64,9 @@ class DepartmentController extends Controller
      */
     public function show(Department $department)
     {
-        //
+        return view('department.show', [
+            'department' => $department
+        ]);
     }
 
     /**
@@ -72,7 +74,9 @@ class DepartmentController extends Controller
      */
     public function edit(Department $department)
     {
-        //
+        return view('department.edit', [
+            'department' => $department
+        ]);
     }
 
     /**
@@ -80,7 +84,12 @@ class DepartmentController extends Controller
      */
     public function update(Request $request, Department $department)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required',
+            'kepala_department' => 'required',
+        ]);
+        $department->update($validated);
+        return redirect("/departments/{$department->id}");
     }
 
     /**
@@ -88,6 +97,9 @@ class DepartmentController extends Controller
      */
     public function destroy(Department $department)
     {
-        //
+         // hapus relasi antara department dengan employe dan project
+         $department->employes()->update(['department_id' => null]);
+        $department->delete();
+        return redirect()->route('departments.index');
     }
 }

@@ -6,7 +6,7 @@
             <li>NIP : {{ $employe->nip }}</li>
             <li>Nama : {{ $employe->fullname }}</li>
             <li>Email : {{ $employe->email }}</li>
-            <li>Department : {{ $employe->department->name }}</li>
+            <li>Department : {{ optional($employe->department)->name }}</li>
             <li>Gender : {{ $employe->gender }}</li>
             <li>Phone Number : {{ $employe->phone_number }}</li>
             <li>Address : {{ $employe->address }}</li>
@@ -25,7 +25,9 @@
         </div>
         <div class="mt-2">
             @auth
-                <a href="{{ route('ambil-project', ['employe' => $employe->id]) }}" class="btn btn-info">Ambil Project</a>
+                <a href="{{ route('ambil-project', ['employe' => $employe->id]) }}" class="btn btn-info">Pilih Project</a>
+                {{-- Tambahkan kondisi jika department ada, button pilih department tidak muncul--}}
+                <a href="{{ route('ambil-department', ['employe' => $employe->id]) }}" class="btn btn-warning">Pilih Department</a>
             @endauth
         </div>
         {{-- 1 --}}

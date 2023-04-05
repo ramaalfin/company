@@ -37,8 +37,8 @@
 
         <div class="flex mt-4">
             @auth
-                <a href="{{ route('tambah-department', ['project' => $project->id]) }}" class="btn btn-info me-2">Tambah Department</a>
-                <a href="{{ route('tambah-employe', ['project' => $project->id]) }}" class="btn btn-warning">Tambah Karyawan</a>
+                <a href="{{ route('tambah-department', ['project' => $project->id]) }}" class="btn btn-info me-2">Pilih Department</a>
+                <a href="{{ route('tambah-employe', ['project' => $project->id]) }}" class="btn btn-warning">Pilih Karyawan</a>
             @endauth
         </div>
 

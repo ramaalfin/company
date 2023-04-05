@@ -19,6 +19,9 @@
                         <th>Fullname</th>
                         <th>Email</th>
                         <th>Department</th>
+                        @auth
+                            <th>Action</th>
+                        @endauth
                     </tr>
                 </thead>
                 <tbody>
@@ -28,7 +31,10 @@
                         <td><a href="{{ route('employes.show', ['employe' => $employe->id]) }}">{{ $employe->nip }}</a></td>
                         <td>{{ $employe->fullname }}</td>
                         <td>{{ $employe->email }}</td>
-                        <td>{{ $employe->department->name }}</td>
+                        <td>{{ optional($employe->department)->name }}</td>
+                        @auth
+                            <td>hapus</td>
+                        @endauth
                     </tr>
                     @endforeach
                 </tbody>

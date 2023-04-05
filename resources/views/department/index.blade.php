@@ -13,7 +13,7 @@
             @foreach ($departments as $department)
                 <div class="card w-96 bg-base-100 shadow-xl">
                     <div class="card-body">
-                        <h2 class="card-title">{{ $department->name }}</h2>
+                        <h2 class="card-title"><a href="{{ route('departments.show', ['department' => $department->id]) }}">{{ $department->name }}</a> </h2>
                         <p>{{ $department->kepala_department }}</p>
                         <div class="card-actions justify-center">
                             <a class="btn btn-primary" href="{{ route('department-employe', ['id' => $department->id]) }}">Employees</a>
