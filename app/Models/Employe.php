@@ -12,7 +12,7 @@ class Employe extends Model
 
     public function department()
     {
-        return $this->belongsTo('App\Models\Department');
+        return $this->belongsTo('App\Models\Department')->withDefault();
     }
 
     public function projects()

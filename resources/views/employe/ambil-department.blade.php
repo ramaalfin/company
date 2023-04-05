@@ -11,8 +11,8 @@
         @csrf
         @foreach ($departments as $department)
             <div class="mb-2">
-                <input type="checkbox" class="form-check-input" id="department-{{ $department->id }}" name="department[]"
-                    value="{{ $department->id }}">
+                <input type="radio" class="form-check-input" id="department-{{ $department->id }}" name="department[]"
+                    value="{{ $department->id }}" {{ $employe->department_id == $department->id ? 'checked' : '' }}>
 
                 <label class="form-check-label" for="department-{{ $department->id }}">
                     {{ $department->name }}

@@ -84,9 +84,10 @@ class EmployeController extends Controller
 
     public function ambilDepartment(Employe $employe)
     {
+
         return view('employe.ambil-department', [
             'employe' => $employe,
-            'departments' => Department::orderBy('name')->get()
+            'departments' => Department::orderBy('name')->get(),
         ]);
     }
 

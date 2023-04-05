@@ -69,7 +69,7 @@ class ProjectController extends Controller
         // ambil karyawan yang sesuai dengan departmentnya
         return view('project.tambah-employe', [
             'project' => $project,
-            'employes' => Employe::orderBy('fullname')->get(), //* ambil employe
+            'employes' => Employe::whereHas('department')->orderBy('fullname')->get(), //* ambil employe
             'employes_sudah_ambil' => $project->employes->pluck('id')->all(), //* Buat array dari daftar employe yang sudah ambil project
         ]);
     }
@@ -117,6 +117,7 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        //
+        $project->delete();
+        return redirect()->route('projects.index');
     }
 }

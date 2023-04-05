@@ -8,6 +8,7 @@
     <p>Daftar Karyawan : </p>
     <form action="{{ route('proses-tambah-employe', ['project' => $project->id]) }}" method="post" class="mt-2">
         @csrf
+        {{-- tambahkan kondisi hanya menampilkan employe yang sudah berelasi dengan department --}}
         @foreach ($employes as $employe)
             <div class="mb-2">
                 <input type="checkbox" class="form-check-input" name="employe[]" id="employe-{{ $employe->id }}" value="{{ $employe->id }}" @if (in_array($employe->id, old('employe') ?? ($employes_sudah_ambil ?? [])))

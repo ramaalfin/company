@@ -19,6 +19,9 @@
                     <th>Start Date</th>
                     <th>Finish Date</th>
                     <th>End Date</th>
+                    @auth
+                        <th>Action</th>
+                    @endauth
                 </tr>
             </thead>
             <tbody>
@@ -29,6 +32,18 @@
                     <td>{{ $project->start_date }}</td>
                     <td>{{ $project->finish_date }}</td>
                     <td>{{ $project->end_date }}</td>
+                    @auth
+                        <td>
+                            <form action="{{ route('projects.destroy', ['project' => $project->id]) }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger" title="Hapus project"
+                                    data-name="{{ $project->name }}" data-table="project">
+                                    Hapus
+                                </button>
+                            </form>
+                        </td>
+                    @endauth
                 </tr>
                 @endforeach
             </tbody>

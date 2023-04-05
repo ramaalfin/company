@@ -23,7 +23,7 @@
         <div class="container mt-2">
             <p>Karyawan yang mengerjakan project : </p>
             <ol class="list-decimal ms-4">
-                @forelse ($project->employes->unique('id') as $employe)
+                @forelse ($project->employes as $employe)
                     <li>
                         <a href="{{ route('employes.show', ['employe' => $employe->id]) }}">
                             {{ $employe->fullname }} ({{ $employe->department->name }})
