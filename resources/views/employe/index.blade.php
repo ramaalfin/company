@@ -34,7 +34,10 @@
                             <td>{{ $employe->email }}</td>
                             <td>{{ optional($employe->department)->name }}</td>
                             @auth
-                                <td>
+                                <td class="flex gap-2">
+                                    <a href="{{ route('employes.edit', ['employe' => $employe->id]) }}" class="btn btn-warning">
+                                        Edit
+                                    </a>
                                     <form action="{{ route('employes.destroy', ['employe' => $employe->id]) }}" method="post">
                                         @csrf
                                         @method('DELETE')

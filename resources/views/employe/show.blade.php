@@ -7,7 +7,7 @@
             <li>Nama : {{ $employe->fullname }}</li>
             <li>Email : {{ $employe->email }}</li>
             <li>Department : {{ optional($employe->department)->name }}</li>
-            <li>Gender : {{ $employe->gender }}</li>
+            <li>Gender : {{ $employe->gender == 'male' ? 'Laki-laki' : 'Perempuan' }}</li>
             <li>Phone Number : {{ $employe->phone_number }}</li>
             <li>Address : {{ $employe->address }}</li>
         </ul>

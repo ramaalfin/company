@@ -124,7 +124,10 @@ class EmployeController extends Controller
      */
     public function edit(Employe $employe)
     {
-        //
+        return view('employe.edit', [
+            'employe' => $employe,
+            'departments' => Department::orderBy('name')->get()
+        ]);
     }
 
     /**
@@ -132,7 +135,17 @@ class EmployeController extends Controller
      */
     public function update(Request $request, Employe $employe)
     {
-        //
+        $validated = $request->validate([
+            'nip' => 'required|size:8|alpha_num|unique:employes,nip,'.$employe->id,
+            'fullname' => 'required',
+            'email' => 'required|email|unique:employes,email,'.$employe->id,
+            'gender' => 'required|string|in:male,female',
+            'address' => 'required',
+            'phone_number' => 'required|max:20',
+            'department_id' => 'required|exists:departments,id'
+        ]);
+        $employe->update($validated);
+        return redirect('/employes');
     }
 
     /**

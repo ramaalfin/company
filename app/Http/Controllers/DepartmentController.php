@@ -97,8 +97,8 @@ class DepartmentController extends Controller
      */
     public function destroy(Department $department)
     {
-         // hapus relasi antara department dengan employe dan project
-         $department->employes()->update(['department_id' => null]);
+         // menghapus relasi antara department dengan employe dengan mengatur nilai kolom department_id pada tabel employes menjadi null
+        $department->employes()->update(['department_id' => null]);
         $department->delete();
         return redirect()->route('departments.index');
     }

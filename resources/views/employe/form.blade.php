@@ -54,7 +54,7 @@
     <label for="gender" class="col-md-3 col-form-label text-md-end">Jenis Kelamin</label>
     <div class="col-md-4">
         <div class="flex items-center gap-x-1">
-            <input id="laki-laki" name="gender" value="male" {{ old('gender' === 'male' ? 'checked' : '') }}
+            <input id="laki-laki" name="gender" value="male" {{ $employe->gender === 'male' ? 'checked' : '' }}
                 type="radio"
                 class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600
                 @error('gender')
@@ -63,7 +63,7 @@
             <label for="laki-laki" class="block text-sm font-medium leading-6 text-gray-900">Laki-laki</label>
         </div>
         <div class="flex items-center gap-x-1">
-            <input id="perempuan" name="gender" value="female" {{ old('gender' === 'female' ? 'checked' : '') }}
+            <input id="perempuan" name="gender" value="female" {{ $employe->gender === 'female' ? 'checked' : '' }}
                 type="radio"
                 class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600
                 @error('gender')
@@ -99,7 +99,7 @@
 
 <div class="row mb-3">
     <label for="phone_number" class="col-md-3 col-form-label text-md-end">Nomor Handphone</label>
-    <input type="text" name="phone_number" value="{{ old('phone_number') ?? ($employe->number ?? ' ') }}"
+    <input type="text" name="phone_number" value="{{ old('phone_number') ?? ($employe->phone_number ?? ' ') }}"
         class=" form-control
     @error('address')
         is-invalid
