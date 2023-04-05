@@ -26,16 +26,26 @@
                 </thead>
                 <tbody>
                     @foreach ($employes as $employe)
-                    <tr>
-                        <td>{{ $employes->firstItem() + $loop->iteration -1 }}</td>
-                        <td><a href="{{ route('employes.show', ['employe' => $employe->id]) }}">{{ $employe->nip }}</a></td>
-                        <td>{{ $employe->fullname }}</td>
-                        <td>{{ $employe->email }}</td>
-                        <td>{{ optional($employe->department)->name }}</td>
-                        @auth
-                            <td>hapus</td>
-                        @endauth
-                    </tr>
+                        <tr>
+                            <td>{{ $employes->firstItem() + $loop->iteration - 1 }}</td>
+                            <td><a href="{{ route('employes.show', ['employe' => $employe->id]) }}">{{ $employe->nip }}</a>
+                            </td>
+                            <td>{{ $employe->fullname }}</td>
+                            <td>{{ $employe->email }}</td>
+                            <td>{{ optional($employe->department)->name }}</td>
+                            @auth
+                                <td>
+                                    <form action="{{ route('employes.destroy', ['employe' => $employe->id]) }}" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger" title="Hapus employe"
+                                            data-name="{{ $employe->name }}" data-table="employe">
+                                            Hapus
+                                        </button>
+                                    </form>
+                                </td>
+                            @endauth
+                        </tr>
                     @endforeach
                 </tbody>
             </table>

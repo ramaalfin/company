@@ -17,17 +17,18 @@
                 @foreach ($projects->unique('id') as $project)
                     <li>
                         <a href="{{ route('projects.show', ['project' => $project->id]) }}">
-                            {{ $project->name }} ({{ implode(', ', $project->departments->pluck('name')->unique()->toArray()) }})
+                            {{ $project->name }}
+                            ({{ implode(', ',$project->departments->pluck('name')->unique()->toArray()) }})
                         </a>
                     </li>
                 @endforeach
             </ol>
         </div>
-        <div class="mt-2">
+        <div class="container flex mt-4 gap-2">
             @auth
                 <a href="{{ route('ambil-project', ['employe' => $employe->id]) }}" class="btn btn-info">Pilih Project</a>
-                {{-- Tambahkan kondisi jika department ada, button pilih department tidak muncul--}}
-                <a href="{{ route('ambil-department', ['employe' => $employe->id]) }}" class="btn btn-warning">Pilih Department</a>
+                <a href="{{ route('ambil-department', ['employe' => $employe->id]) }}" class="btn btn-warning">Pilih
+                    Department</a>
             @endauth
         </div>
         {{-- 1 --}}
