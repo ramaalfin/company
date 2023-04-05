@@ -82,31 +82,31 @@ class EmployeController extends Controller
         return redirect(route('employes.show', ['employe' => $employe->id]));
     }
 
-    public function ambilDepartment(Employe $employe)
-    {
+    // public function ambilDepartment(Employe $employe)
+    // {
 
-        return view('employe.ambil-department', [
-            'employe' => $employe,
-            'departments' => Department::orderBy('name')->get(),
-        ]);
-    }
+    //     return view('employe.ambil-department', [
+    //         'employe' => $employe,
+    //         'departments' => Department::orderBy('name')->get(),
+    //     ]);
+    // }
 
-    public function prosesAmbilDepartment(Request $request, Employe $employe)
-    {
-        $departments = Department::orderBy('name')->get();
-        $department_id = $departments->pluck('id')->toArray();
-        $validated = $request->validate([
-            'department.*' => 'distinct|in:'.implode(',', $department_id),
-        ]);
-        // Memperbarui relasi department
-        if($request->has('department')){
-            $employe->department()->associate($validated['department'][0]);
-        } else {
-            $employe->department()->dissociate();
-        }
-        $employe->save();
-        return redirect()->route('employes.show', ['employe' => $employe->id]);
-    }
+    // public function prosesAmbilDepartment(Request $request, Employe $employe)
+    // {
+    //     $departments = Department::orderBy('name')->get();
+    //     $department_id = $departments->pluck('id')->toArray();
+    //     $validated = $request->validate([
+    //         'department.*' => 'distinct|in:'.implode(',', $department_id),
+    //     ]);
+    //     // Memperbarui relasi department
+    //     if($request->has('department')){
+    //         $employe->department()->associate($validated['department'][0]);
+    //     } else {
+    //         $employe->department()->dissociate();
+    //     }
+    //     $employe->save();
+    //     return redirect()->route('employes.show', ['employe' => $employe->id]);
+    // }
 
     /**
      * Display the specified resource.

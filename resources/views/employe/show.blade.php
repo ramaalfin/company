@@ -27,8 +27,8 @@
         <div class="container flex mt-4 gap-2">
             @auth
                 <a href="{{ route('ambil-project', ['employe' => $employe->id]) }}" class="btn btn-info">Pilih Project</a>
-                <a href="{{ route('ambil-department', ['employe' => $employe->id]) }}" class="btn btn-warning">Pilih
-                    Department</a>
+                {{-- <a href="{{ route('ambil-department', ['employe' => $employe->id]) }}" class="btn btn-warning">Pilih
+                    Department</a> --}}
             @endauth
         </div>
         {{-- 1 --}}
