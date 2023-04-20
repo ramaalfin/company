@@ -15,7 +15,7 @@ class ProjectController extends Controller
     public function index()
     {
         return view('project.index', [
-            'projects' => Project::orderBy('name')->paginate(10),
+            'projects' => Project::orderByDesc('created_at')->paginate(10),
         ]);
     }
 
@@ -41,6 +41,18 @@ class ProjectController extends Controller
         ]);
         Project::create($validated);
         return redirect('/projects');
+    }
+
+    public function uploadImage(Request $request)
+    {
+        $project = new Project();
+        $project->id = 0;
+        $project->exists = true;
+        $images = $project->addMediaFromRequest('upload')->toMediaCollection('images');
+
+        return response()->json([
+            'url' => $images->getUrl()
+        ]);
     }
 
     public function tambahDepartment(Project $project)
@@ -101,7 +113,7 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        //
+        return view('project.edit', ['project' => $project]);
     }
 
     /**
@@ -109,7 +121,15 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required',
+            'description' => 'nullable|min:3',
+            'start_date' => "nullable|date",
+            'end_date' => 'nullable|date',
+            'finish_date' => 'nullable|date',
+        ]);
+        $project->update($validated);
+        return redirect('/projects');
     }
 
     /**

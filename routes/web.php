@@ -34,3 +34,5 @@ Route::post('/projects/tambah-employe/{project}', [ProjectController::class, 'pr
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::post('upload', [ProjectController::class, 'uploadImage'])->name('ckeditor.upload');

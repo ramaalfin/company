@@ -6,7 +6,7 @@
 
 <hr>
 
-<form action="{{ route('projects.store') }}" method="POST">
+<form action="{{ route('projects.store') }}" method="POST" enctype="multipart/form-data">
     @include('project.form', ['tombol' => 'Tambah'])
 </form>
 @endsection

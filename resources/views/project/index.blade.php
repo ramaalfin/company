@@ -30,10 +30,13 @@
                     <td>{{ $projects->firstItem() + $loop->iteration -1 }}</td>
                     <td><a href="{{ route('projects.show', ['project' => $project->id]) }}">{{ $project->name }}</a></td>
                     <td>{{ $project->start_date }}</td>
-                    <td>{{ $project->finish_date }}</td>
+                    <td class="{{ \Carbon\Carbon::parse($project->finish_date)->greaterThan(\Carbon\Carbon::parse($project->end_date)) ? 'text-red-600' : '' }}">{{ $project->finish_date }}</td>
                     <td>{{ $project->end_date }}</td>
                     @auth
-                        <td>
+                        <td class="flex gap-2">
+                            <a href="{{ route('projects.edit', ['project' => $project->id]) }}" class="btn btn-warning">
+                                Edit
+                            </a>
                             <form action="{{ route('projects.destroy', ['project' => $project->id]) }}" method="post">
                                 @csrf
                                 @method('DELETE')

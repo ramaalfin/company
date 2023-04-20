@@ -127,3 +127,4 @@
 </body>
 
 </html>
+@stack('addon-script')
