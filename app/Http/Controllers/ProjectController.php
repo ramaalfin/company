@@ -71,7 +71,7 @@ class ProjectController extends Controller
         $validated = $request->validate([
             'department.*' => 'distinct|in:'.implode(', ', $department_project) //* jika id department yang dipilih ada di dalam syarat 'in', maka akan lolos validasi.
         ]);
-        $project->departments()->sync($validated['department' ?? []]); //*menyinkronkan data project yang terhubung dengan employe yang sedang diedit pada form edit employe.
+        $project->departments()->sync($validated['department'] ?? []); //*menyinkronkan data project yang terhubung dengan employe yang sedang diedit pada form edit employe.
         return redirect(route('projects.show', ['project' => $project->id]));
     }
 
